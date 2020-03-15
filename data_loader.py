@@ -89,8 +89,10 @@ def data_for_training(rawdata, sensitivity, mask_func, norm=True):
     sense_gt = cobmine_all_coils(img_gt, sensitivity)
     
     sense_und = cobmine_all_coils(img_und, sensitivity) 
+
+    sense_und_kspace = T.fft2(sense_und) 
         
-    return sense_und, sense_gt, rawdata_und, masks, sensitivity
+    return sense_und, sense_gt, sense_und_kspace, rawdata_und, masks, sensitivity
      
 
 def get_epoch_batch(subject_id, acc, center_fract):
@@ -153,7 +155,7 @@ def load_traindata_path(dataset_dir, name):
             
     return data_list
             
-            
+'''
 
 if __name__ == '__main__':
     
@@ -169,3 +171,4 @@ if __name__ == '__main__':
              
  
         
+'''
